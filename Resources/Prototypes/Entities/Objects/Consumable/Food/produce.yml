@@ -2400,6 +2400,9 @@
     tags:
     - Recyclable
     - Trash
+    # Start of harmony specific changes
+    - BungoBombAmmo
+    # End of harmony specific changes
   - type: SolutionContainerManager
     solutions:
       food:
@@ -2415,6 +2418,11 @@
     seedId: bungo
   - type: SpaceGarbage
   - type: BadFood
+  # Start of Harmony specific changes
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
 
 - type: entity
   parent: FoodProduceBase

@@ -34,3 +34,52 @@
   - type: StorageFill
     contents:
     - id: MiniSyringe
+
+# Bungo Bomber
+- type: entity
+  name: Bungo Bomber
+  parent: [BaseStorageItem, BaseMinorContraband]
+  id: BungoBomber
+  description: A worthy weapon to the most dedicated Bungo fans.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Cannons/pneumatic_cannon.rsi
+    layers:
+    - state: icon
+    - state: tank
+      map: [ "tank" ]
+      visible: false
+  - type: Item
+    size: Large #may change later
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: 
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    clumsyProof: true
+  - type: ContainerAmmoProvider
+    container: storagebase
+  - type: PneumaticCannon
+    throwItems: true
+    gasUsage: 0
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,4
+    whitelist: 
+      tags:
+      - BungoBombAmmo
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  

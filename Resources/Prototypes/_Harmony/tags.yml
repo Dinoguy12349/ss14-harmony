@@ -27,3 +27,6 @@
 - type: Tag
   id: CartridgeLightRifleCaseless
 
+# Tag used for Bungo Bomber in the pits protoype
+- type: Tag
+  id: BungoBombAmmo
