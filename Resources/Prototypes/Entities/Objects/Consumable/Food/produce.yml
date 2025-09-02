@@ -2400,9 +2400,6 @@
     tags:
     - Recyclable
     - Trash
-    # Start of harmony specific changes
-    - BungoBombAmmo
-    # End of harmony specific changes
   - type: SolutionContainerManager
     solutions:
       food:
@@ -2419,7 +2416,27 @@
   - type: SpaceGarbage
   - type: BadFood
   # Start of Harmony specific changes
-  - type: DamageOtherOnHit
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0
+        friction: 1.3
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          bounds: "-0.3,-0.2,0.3,0.2"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
     damage:
       types:
         Blunt: 10
