@@ -2440,6 +2440,7 @@
     damage:
       types:
         Blunt: 10
+  # end of Harmony specific change
 
 - type: entity
   parent: FoodProduceBase
