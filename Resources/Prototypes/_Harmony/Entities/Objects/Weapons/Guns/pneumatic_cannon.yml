@@ -72,8 +72,8 @@
     grid:
     - 0,0,2,4
   - type: Appearance
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
+  # - type: ContainerContainer
+  #   containers:
+  #     storagebase: !type:Container
+  #       ents: []
   
