@@ -43,7 +43,7 @@
   description: A worthy weapon to the most dedicated Bungo fans.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Cannons/pneumatic_cannon.rsi
+    sprite: _Harmony/Objects/Weapons/Guns/Cannons/bungo_bomber.rsi
     layers:
     - state: icon
   - type: Item
