@@ -2458,16 +2458,3 @@
     Fiber: 10
   solids:
     FoodCakePlain: 1
-
-- type: microwaveMealRecipe
-  id: RecipeBungoBomber
-  name: bungobomber recipe
-  result: BungoBomber
-  time: 20
-  secretRecipe: true
-  group: Secret
-  solids:
-    CableApcStack1: 5
-    SheetGlass1: 10
-    FoodBungo: 1
-      

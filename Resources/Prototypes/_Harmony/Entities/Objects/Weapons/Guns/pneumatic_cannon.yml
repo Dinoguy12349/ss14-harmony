@@ -37,10 +37,11 @@
 
 # Bungo Bomber
 - type: entity
-  name: Bungo Bomber
   parent: [BaseStorageItem, BaseSyndicateContraband]
   id: BungoBomber
-  description: A worthy weapon to the most dedicated Bungo fans.
+  name: Bungo Bomber
+  suffix: Harmony
+  description: This cannon seems to have been empowered by the juices of the bungo fruit, removing the need for an external gas tank.
   components:
   - type: Sprite
     sprite: _Harmony/Objects/Weapons/Guns/Cannons/bungo_bomber.rsi
