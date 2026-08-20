@@ -1,0 +1,17 @@
+# IPCs
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalHumanoidSilicon
+  suffix: IPC, Box
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: IPCOilPack1
+        - id: CablePack
+        - id: ChassisPatch1
+        - id: WelderMini
+        - id: Flare
+        - id: EmergencySilipen
+
