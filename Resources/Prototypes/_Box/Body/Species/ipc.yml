@@ -203,9 +203,6 @@
       Male: UnisexIPC
       Female: UnisexIPC
       Unsexed: UnisexIPC
-  - type: Carriable # Carrying from nyanotransen
-  - type: FootprintOwner
-    footprint: humanFootprint
   # stuff that makes the IPC do IPC things
   - type: Silicon
     entityType: enum.SiliconType.Player

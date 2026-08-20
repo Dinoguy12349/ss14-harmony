@@ -31,14 +31,19 @@ public sealed class WeldingHealableSystem : SharedWeldingHealableSystem
     private void OnRepairFinished(EntityUid uid, WeldingHealableComponent healableComponent, SiliconRepairFinishedEvent args)
     {
         if (args.Cancelled || args.Used == null
+            || !TryComp<InjurableComponent>(args.Target, out var injurable) // Box Change: DamageableSystem refactor 
             || !TryComp<DamageableComponent>(args.Target, out var damageable)
             || !TryComp<WeldingHealingComponent>(args.Used, out var component)
-            || damageable.DamageContainerID is null
-            || !component.DamageContainers.Contains(damageable.DamageContainerID)
+        // Box Change Start: DamageableSystem refactor 
+            || injurable.DamageContainer is null
+            || !component.DamageContainers.Contains(injurable.DamageContainer)
+        // Box Change End
             || !HasDamage((args.Target.Value, damageable), component, args.User)
             || !TryComp<WelderComponent>(args.Used, out var welder)
-            || !TryComp<SolutionContainerManagerComponent>(args.Used, out var solutionContainer)
-            || !_solutionContainer.TryGetSolution(((EntityUid) args.Used, solutionContainer), welder.FuelSolutionName, out var solution))
+        // Box Change Start: DamageableSystem refactor 
+            || !TryComp<SolutionManagerComponent>(args.Used, out var solutionContainer)
+            || !_solutionContainer.TryGetSolution(((EntityUid)args.Used, solutionContainer), welder.FuelSolutionName, out var solution))
+        // Box Change End
             return;
 
         _damageableSystem.TryChangeDamage(uid, component.Damage, true, false, origin: args.User);
@@ -75,9 +80,12 @@ public sealed class WeldingHealableSystem : SharedWeldingHealableSystem
     {
         if (args.Handled
             || !EntityManager.TryGetComponent(args.Used, out WeldingHealingComponent? component)
+        // Box Change Start: DamageableSystem refactor 
             || !EntityManager.TryGetComponent(args.Target, out DamageableComponent? damageable)
-            || damageable.DamageContainerID is null
-            || !component.DamageContainers.Contains(damageable.DamageContainerID)
+            || !EntityManager.TryGetComponent(args.Target, out InjurableComponent? injurable)
+            || injurable.DamageContainer is null
+            || !component.DamageContainers.Contains(injurable.DamageContainer)
+        // Box Change End
             || !HasDamage((args.Target, damageable), component, args.User)
             || !_toolSystem.HasQuality(args.Used, component.QualityNeeded)
             || args.User == args.Target && !(component.AllowSelfHeal && healableComponent.AllowSelfHeal)) // DeltaV - self heal disabled by WeldingHealable

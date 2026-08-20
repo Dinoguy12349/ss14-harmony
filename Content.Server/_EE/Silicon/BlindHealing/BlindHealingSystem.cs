@@ -2,7 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Cargo.Components;
 using Content.Server.Stack;
 using Content.Shared._EE.Silicon.BlindHealing;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -70,8 +70,10 @@ public sealed class BlindHealingSystem : SharedBlindHealingSystem
     {
 
         if (args.Handled
-            || !TryComp<DamageableComponent>(args.User, out var damageable)
-            || damageable.DamageContainerID != null && !component.DamageContainers.Contains(damageable.DamageContainerID)
+        // Box Change Start: DamageableSystem refactor 
+            || !TryComp<InjurableComponent>(args.User, out var injurable) 
+            || injurable.DamageContainer != null && !component.DamageContainers.Contains(injurable.DamageContainer) 
+        // Box Change End
             || !TryComp<BlindableComponent>(args.User, out var blindcomp)
             || blindcomp.EyeDamage == 0
             || args.User == args.Target && !component.AllowSelfHeal)
@@ -86,8 +88,10 @@ public sealed class BlindHealingSystem : SharedBlindHealingSystem
     private void OnUse(EntityUid uid, BlindHealingComponent component, ref UseInHandEvent args)
     {
         if (args.Handled
-            || !TryComp<DamageableComponent>(args.User, out var damageable)
-            || damageable.DamageContainerID != null && !component.DamageContainers.Contains(damageable.DamageContainerID)
+        // Box Change Start: DamageableSystem refactor 
+            || !TryComp<InjurableComponent>(args.User, out var injurable) 
+            || injurable.DamageContainer != null && !component.DamageContainers.Contains(injurable.DamageContainer) 
+        // Box Change End
             || !TryComp<BlindableComponent>(args.User, out var blindcomp)
             || blindcomp.EyeDamage == 0
             || !component.AllowSelfHeal)
