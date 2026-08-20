@@ -42,6 +42,11 @@ namespace Content.Shared.Humanoid
                 default:
                     return Loc.GetString("namepreset-firstlast",
                         ("first", GetFirstName(speciesProto, gender)), ("last", GetLastName(speciesProto)));
+                // Box Change Start, IPC Names
+                case SpeciesNaming.FirstDashLast: // Goobstation
+                    return Loc.GetString("namepreset-firstdashlast",
+                        ("first", GetFirstName(speciesProto, gender)), ("last", GetLastName(speciesProto)));
+                // Box Change End
             }
         }
 
