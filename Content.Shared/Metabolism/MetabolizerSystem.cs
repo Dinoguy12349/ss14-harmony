@@ -196,6 +196,8 @@ public sealed partial class MetabolizerSystem : EntitySystem
             if (isDead && !proto.WorksOnTheDead)
                 continue;
 
+            var compatibleMetabolism = ent.Comp1.MetabolismCategories.Overlaps(proto.MetabolismCategories); // Box Change - SynthMetabolism
+
             var actualEntity = ent.Comp2?.Body ?? solutionOwner.Value;
 
             // do all effects, if conditions apply
@@ -210,6 +212,11 @@ public sealed partial class MetabolizerSystem : EntitySystem
                 // See if conditions apply
                 if (effect.Conditions != null && !CanMetabolizeEffect(actualEntity, ent, solutionEntity.Value, effect.Conditions))
                     continue;
+
+                // Box Change Start - SynthMetabolism
+                if (!compatibleMetabolism)
+                    continue;
+                // Box Change End
 
                 ApplyEffect(effect);
 
